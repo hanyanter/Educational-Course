@@ -1,0 +1,63 @@
+<odoo>
+    <record id="subject_tree_view"
+            model="ir.ui.view">
+        <field name="name">subject tree view</field>
+        <field name="model">subject</field>
+        <field name="arch" type="xml">
+            <tree string="Subject" delete="0">
+                <field name="display_name"/>
+                <field name="name" on_change="1"/>
+                <field name="stage_id" on_change="1"
+                       can_create="1" can_write="1"/>
+                <field name="product_id"
+                       can_create="0" can_write="0"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="subject_form_view"
+            model="ir.ui.view">
+        <field name="name">subject form</field>
+        <field name="model">subject</field>
+        <field name="arch" type="xml">
+            <form string="Subject" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id" on_change="1"
+                                   can_create="0" can_write="0"/>
+                            <field name="session_cost"/>
+                        </group>
+                        <group>
+                            <field name="stage_id"
+                                   can_create="1" can_write="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="subject_action" model="ir.actions.act_window">
+        <field name="name">Subject</field>
+        <field name="res_model">subject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <menuitem id="configuration_menu"
+            name="Configuration"
+            parent="course_root_menu"
+    />
+
+    <menuitem id="subject_menu_item"
+            name="Subject"
+            parent="configuration_menu"
+            action="subject_action"
+    />
+</odoo>

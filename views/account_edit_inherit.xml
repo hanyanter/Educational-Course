@@ -1,0 +1,59 @@
+<odoo>
+    <record id="account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">account.payment.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <!--            <field name="ref" position="after">-->
+            <!--                <field name="age"/>-->
+            <!--            </field>-->
+            <field name="is_internal_transfer" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <!--            <field name="is_internal_transfer" position="attributes">-->
+            <!--                <attribute name="invisible">True</attribute>-->
+            <!--            </field>-->
+        </field>
+    </record>
+
+    <record id="customer_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='followup_tab']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='fiscal_information']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='sale']" position="inside">
+                <field name="customer"/>
+            </xpath>
+
+            <xpath expr="//field[@name='property_supplier_payment_term_id']" position="before">
+                <field name="supplier"/>
+            </xpath>
+
+            <xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='property_payment_term_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <!--            <field name='team_id' position="attributes">-->
+            <!--                <attribute name="invisible">True</attribute>-->
+            <!--            </field>-->
+
+        </field>
+    </record>
+
+</odoo>

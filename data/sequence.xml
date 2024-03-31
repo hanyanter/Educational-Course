@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="teacher_accrual_sequence" model="ir.sequence">
+            <field name="name">Teacher Accrual Seq.</field>
+            <field name="code">teacher_accrual_seq</field>
+            <field name="prefix">SE-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+
+        <record id="course_sequence" model="ir.sequence">
+            <field name="name">Course Seq.</field>
+            <field name="code">course_seq</field>
+            <field name="prefix">CO-</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+
+        <record id="session_sequence" model="ir.sequence">
+            <field name="name">Session Seq.</field>
+            <field name="code">session_seq</field>
+            <field name="prefix">SE-</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+course.access_course,access_course,course.model_course,base.group_user,1,1,1,1
+course.access_session,access_session,course.model_session,base.group_user,1,1,1,1
+course.access_teacher_accrual,access_teacher_accrual,course.model_teacher_accrual,base.group_user,1,1,1,1
+course.access_subject,access_subject,course.model_subject,base.group_user,1,1,1,1
+course.access_stage,access_stage,course.model_stage,base.group_user,1,1,1,1

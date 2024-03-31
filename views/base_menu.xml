@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem
+            id="course_root_menu"
+            name="Courses"
+            web_icon="course/static/description/icon.png"
+            />
+
+</odoo>

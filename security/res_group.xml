@@ -1,0 +1,16 @@
+<odoo>
+    <record id="course_group_category" model="ir.module.category">
+        <field name="name">Courses</field>
+    </record>
+
+    <record id="courses_user_group" model="res.groups">
+        <field name="name">Courses Normal User</field>
+        <field name="category_id" ref="course_group_category"/>
+    </record>
+
+    <record id="courses_manager_group" model="res.groups">
+        <field name="name">Courses Manager User</field>
+        <field name="category_id" ref="course_group_category"/>
+        <field name="implied_ids" eval="[(4, ref('courses_user_group'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,145 @@
+<odoo>
+    <record id="session_tree_view"
+            model="ir.ui.view">
+        <field name="name">session tree view</field>
+        <field name="model">session</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="subject_id"/>
+                <field name="note"/>
+                <field name="sales_person"/>
+                <field name="teacher_id"/>
+                <field name="session_accrual"/>
+                <field name="session_type"/>
+                <field name="session_percent" widget="percentage"/>
+                <field name="price"/>
+                <field name="student_ids"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="session_form_view"
+            model="ir.ui.view">
+        <field name="name">session form</field>
+        <field name="model">session</field>
+        <field name="arch" type="xml">
+            <form string="Session" delete="0">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,progress,done,invoiced"
+                           readonly="1"/>
+                    <button name="action_progress"
+                            type="object"
+                            string="Start"
+                            class="btn-secondary"
+                            invisible="state != 'draft'"
+                    />
+                    <button name="action_done"
+                            type="object"
+                            string="Done"
+                            class="btn-success"
+                            invisible="state != 'progress'"
+                    />
+                    <button name="action_invoiced"
+                            type="object"
+                            string="Create Invoices"
+                            class="btn-primary"
+                            invisible="1"
+                    />
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            class="btn-danger"
+                            invisible="state == 'invoiced'"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_view_invoice" class="oe_stat_button"
+                                icon="fa-pencil-square-o" invisible="invoice_count == 0 or state not in 'invoiced'">
+                            <field name="invoice_count" widget="statinfo" string="Invoices" id="invoice_count"/>
+                            <field name="invoice_ids" invisible="1" can_create="1" can_write="1"
+                                   id="invoice_ids"/>
+                        </button>
+                        <button type="object" name="action_view_accrual" class="oe_stat_button"
+                                icon="fa-pencil-square-o" invisible="accrual_cnt == 0 or state not in 'invoiced'">
+                            <field name="accrual_cnt" widget="statinfo" string="Teacher Accruals" id="accrual_cnt"/>
+                            <field name="accrual_ids" invisible="1" id="accrual_ids"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="course_id" readonly="state not in ('draft' , 'progress')"
+                                   on_change="1" can_create="1" can_write="1"/>
+                            <field name="subject_id" options="{'no_create': True}"
+                                   readonly="state not in ('draft' , 'progress')" on_change="1"
+                                   can_create="1" can_write="1"/>
+                            <field name="stage_id" readonly="1" can_create="1" can_write="1"/>
+                            <field name="product_id" readonly="state not in ('draft' , 'progress')"
+                                   invisible="1" can_create="0" can_write="0"/>
+                        </group>
+                        <group>
+                            <field name="teacher_id" readonly="state not in ('draft' , 'progress')"
+                                   can_create="1" can_write="1"/>
+                            <field name="session_percent" widget="percentage"
+                                   readonly="state not in ('draft' , 'progress')"/>
+                            <field name="session_type" readonly="state not in ('draft' , 'progress')"/>
+                        </group>
+                        <group>
+                            <field name="price" readonly="state not in ('draft' , 'progress')"/>
+                            <field name="payment_type" readonly="state not in ('draft' , 'progress')"
+                                   can_create="1" can_write="1"/>
+                            <field name="extra_profit" invisible="1"/>
+                            <field name="sales_person" readonly="state not in ('draft' , 'progress')"
+                                   can_create="1" can_write="1"/>
+                        </group>
+                        <group>
+                            <field name="start_date" readonly="state not in ('draft' , 'progress')"
+                                   on_change="1"/>
+                            <field name="duration" readonly="state not in ('draft' , 'progress')" on_change="1"
+                                   widget="float_time"/>
+                            <field name="end_date" readonly="state not in ('draft' , 'progress')"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                    <notebook>
+                        <page string="Students">
+                            <group>
+                                <field name="student_ids" readonly="state not in ('draft' , 'progress')"
+                                       widget="many2many_tags" required="1" can_create="1" can_write="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="session_action" model="ir.actions.act_window">
+        <field name="name">Session</field>
+        <field name="res_model">session</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <menuitem
+            id="session_menu_item"
+            name="Session"
+            parent="course_root_menu"
+            action="session_action"
+    />
+</odoo>

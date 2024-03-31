@@ -1,0 +1,67 @@
+.custom_header table thead > tr > th {
+background-color: sky ;
+color: black ;
+text-align: left ;
+}
+
+.custom_header table thead > tr > th:nth-child(2,3) {
+width: 100px !important;
+}
+
+.custom_header table thead > tr > th:nth-child(4) {
+width: 300px !important;
+}
+
+.custom_header table thead > tr > th:nth-child(5) {
+width: 150px !important;
+}
+
+.custom_header table thead > tr > th:nth-child(6,7,8,9,10,11,15) {
+width: 100px !important;
+}
+
+.custom_header table thead > tr > th:nth-child(12) {
+width: 200px !important;
+}
+
+/*.custom_report_style_left {
+text-align: left ;
+width: 50% ;
+float: left ;
+}
+
+.custom_report_style_right {
+text-align: left ;
+width: 50% ;
+float: right ;
+}*/
+
+.custom_teacher table thead > tr > th {
+background-color: blue ;
+color: black ;
+text-align: left ;
+}
+
+.custom_teacher table thead > tr > th:nth-child(2) {
+width: 450px !important;
+}
+
+.custom_teacher table thead > tr > th:nth-child(3,4) {
+width: 300px !important;
+}
+
+.custom_teacher table thead > tr > th:nth-child(5) {
+width: 175px !important;
+}
+
+.custom_teacher table thead > tr > th:nth-child(6) {
+width: 175px !important;
+}
+
+.custom_teacher table thead > tr > th:nth-child(7) {
+width: 175px !important;
+}
+
+/*.custom_teacher table thead > tr > th:nth-child(5,6,7,8) {
+width: 300px !important;
+}*/
